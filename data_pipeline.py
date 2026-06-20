@@ -2,7 +2,7 @@ import abc
 import typing
 
 
-# ==================== DataProcessor Base ====================
+
 
 class DataProcessor(abc.ABC):
     def __init__(self) -> None:
@@ -34,7 +34,7 @@ class DataProcessor(abc.ABC):
         return type(self).__name__.replace("Processor", " Processor")
 
 
-# ==================== Specialized Processors ====================
+
 
 class NumericProcessor(DataProcessor):
     def validate(self, data: typing.Any) -> bool:
@@ -120,7 +120,7 @@ class LogProcessor(DataProcessor):
             self._rank += 1
 
 
-# ==================== Export Plugins ====================
+
 
 class ExportPlugin(typing.Protocol):
     def process_output(self, data: list[tuple[int, str]]) -> None:
@@ -143,7 +143,7 @@ class JSONExportPlugin:
         print("{" + parts + "}")
 
 
-# ==================== DataStream ====================
+
 
 class DataStream:
     def __init__(self) -> None:
@@ -190,7 +190,7 @@ class DataStream:
                 plugin.process_output(batch)
 
 
-# ==================== Main ====================
+
 
 if __name__ == "__main__":
     print("=== Code Nexus - Data Pipeline ===")
