@@ -2,8 +2,6 @@ import abc
 import typing
 
 
-
-
 class DataProcessor(abc.ABC):
     def __init__(self) -> None:
         self._data: list[tuple[int, str]] = []
@@ -32,8 +30,6 @@ class DataProcessor(abc.ABC):
 
     def processor_name(self) -> str:
         return type(self).__name__.replace("Processor", " Processor")
-
-
 
 
 class NumericProcessor(DataProcessor):
@@ -120,11 +116,9 @@ class LogProcessor(DataProcessor):
             self._rank += 1
 
 
-
-
 class ExportPlugin(typing.Protocol):
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        ...
+        pass
 
 
 class CSVExportPlugin:
@@ -141,8 +135,6 @@ class JSONExportPlugin:
         )
         print("JSON Output:")
         print("{" + parts + "}")
-
-
 
 
 class DataStream:
@@ -188,8 +180,6 @@ class DataStream:
                 batch.append(proc.output())
             if batch:
                 plugin.process_output(batch)
-
-
 
 
 if __name__ == "__main__":
